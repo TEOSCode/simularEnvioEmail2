@@ -23,15 +23,17 @@ function iniciarApp() {
   btnEnviar.disabled = true;
   btnEnviar.classList.add('cursor-not-allowed', 'opacity-50');
 }
-
+function borrarErrores() {
+  const error = document.querySelector('.error');
+  console.log(error);
+  if (error) {
+    error.remove();
+  }
+}
 function validarForm(e) {
   if (e.target.value.length > 0) {
     //Eliminar errores
-    const error = document.querySelector('.error');
-    console.log(error);
-    if (error) {
-      error.remove();
-    }
+    borrarErrores();
     e.target.classList.remove('border-red-500');
     e.target.classList.add('border', 'border-green-500');
   } else {
@@ -109,6 +111,7 @@ function enviarEmail(e) {
 
 function resetForm(e) {
   e.preventDefault();
+  borrarErrores();
   formulario.reset();
   iniciarApp();
 }
