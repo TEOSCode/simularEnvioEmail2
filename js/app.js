@@ -22,10 +22,10 @@ function eventListeners() {
 function iniciarApp() {
   btnEnviar.disabled = true;
   btnEnviar.classList.add('cursor-not-allowed', 'opacity-50');
+  console.log('iniciar app');
 }
 function borrarErrores() {
   const error = document.querySelector('.error');
-  console.log(error);
   if (error) {
     error.remove();
   }
