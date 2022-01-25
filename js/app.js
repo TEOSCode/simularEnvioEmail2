@@ -27,7 +27,7 @@ function iniciarApp() {
 function validarForm(e) {
   if (e.target.value.length > 0) {
     //Eliminar errores
-    const error = document.querySelector('.error-inputs');
+    const error = document.querySelector('.error');
     console.log(error);
     if (error) {
       error.remove();
@@ -46,7 +46,7 @@ function validarForm(e) {
     } else {
       e.target.classList.remove('border-green-500');
       e.target.classList.add('border', 'border-red-500');
-      mostrarError('Email no valido', 'email');
+      mostrarError('Email no valido');
     }
   }
   if (
@@ -61,7 +61,7 @@ function validarForm(e) {
     btnEnviar.classList.add('cursor-not-allowed', 'opacity-50');
   }
 }
-function mostrarError(mensaje, type) {
+function mostrarError(mensaje) {
   const mensajeError = document.createElement('p');
   mensajeError.textContent = mensaje;
   mensajeError.classList.add(
@@ -70,16 +70,13 @@ function mostrarError(mensaje, type) {
     'p-3',
     'mb-5',
     'text-center',
-    'font-bold'
+    'font-bold',
+    'error'
   );
-  if (type) {
-    mensajeError.classList.add('error-email');
-  } else {
-    mensajeError.classList.add('error-inputs');
-  }
-  const errorInputs = document.querySelectorAll('.error-inputs');
-  const errorEmail = document.querySelectorAll('.error-inputs');
-  if (errorInputs.length === 0 && errorEmail === 0) {
+
+  const error = document.querySelectorAll('.error');
+
+  if (error.length === 0) {
     formulario.insertBefore(mensajeError, spinner);
   }
 }
@@ -102,7 +99,7 @@ function enviarEmail(e) {
       'font-bold'
     );
     formulario.insertBefore(parrafo, spinner);
-    resetForm();
+    resetForm(e);
 
     setTimeout(() => {
       parrafo.remove();
